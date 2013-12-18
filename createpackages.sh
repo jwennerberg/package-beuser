@@ -7,10 +7,21 @@
 # Developed by Kalle Kiviaho <kalle.kiviaho@ericsson.com>
 #
 
+#
+# Install fpm, needed to run the script
+#   gem install fpm
+#
+# Install heirloom-tools to support building Solaris packages
+#   Download latest heirloom-tools from http://spacewalk.redhat.com/yum/latest/RHEL/6/x86_64/
+#   and install on machine to build packages.
+#
+
+umask 0022
+
 TYPE=$1
 
 NAME=beuser
-VERSION=0.1
+VERSION=0.2
 ITERATION=1
 EPOCH=1
 MAINTAINER=kalle.kiviaho@ericsson.com
@@ -39,10 +50,10 @@ mkdir -p beuser/ubuntu/12.04/x86_64/bin
 cp -a ${BEUSERPATH}/beuser.ubuntu1204x64 beuser/ubuntu/12.04/x86_64/bin/beuser
 mkdir -p beuser/ubuntu/13.04/x86_64/bin
 cp -a ${BEUSERPATH}/beuser.ubuntu1304x64 beuser/ubuntu/13.04/x86_64/bin/beuser
-mkdir -p beuser/solaris/10/sparc/bin
-cp -a ${BEUSERPATH}/beuser.sol10sparc beuser/solaris/10/sparc/bin/beuser
-mkdir -p beuser/solaris/10/x86_64/bin
-cp -a ${BEUSERPATH}/beuser.sol10x64 beuser/solaris/10/x86_64/bin/beuser
+mkdir -p beuser/solaris/10/sparc/usr/bin
+cp -a ${BEUSERPATH}/beuser.sol10sparc beuser/solaris/10/sparc/usr/bin/beuser
+mkdir -p beuser/solaris/10/x86_64/usr/bin
+cp -a ${BEUSERPATH}/beuser.sol10x64 beuser/solaris/10/x86_64/usr/bin/beuser
 
 mkdir packages
 
@@ -77,7 +88,7 @@ FPMSOLARGS="$FPMCOMMONARGS -t solaris --prefix /bin -a all --solaris-user root -
   mv beuser/ubuntu/13.04/x86_64/*.deb packages/
 
 # Solaris
-  (cd beuser/solaris/10/x86_64/bin ; fpm $FPMSOLARGS beuser)
-  mv beuser/solaris/10/x86_64/bin/beuser.solaris packages/beuser-${VERSION}-${ITERATION}.sol10.x86.pkg
-  (cd beuser/solaris/10/sparc/bin ; fpm $FPMSOLARGS beuser)
-  mv beuser/solaris/10/sparc/bin/beuser.solaris packages/beuser-${VERSION}-${ITERATION}.sol10.sparc.pkg
+  (cd beuser/solaris/10/x86_64/usr/bin ; fpm $FPMSOLARGS beuser)
+  mv beuser/solaris/10/x86_64/usr/bin/beuser.solaris packages/beuser-${VERSION}-${ITERATION}.sol10.x86.pkg
+  (cd beuser/solaris/10/sparc/usr/bin ; fpm $FPMSOLARGS beuser)
+  mv beuser/solaris/10/sparc/usr/bin/beuser.solaris packages/beuser-${VERSION}-${ITERATION}.sol10.sparc.pkg
