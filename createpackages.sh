@@ -67,7 +67,7 @@ FPMSOLARGS="$FPMCOMMONARGS -t solaris --prefix /bin -a all --solaris-user root -
   (cd beuser/rhel/5/i386 ; fpm -a noarch --iteration ${ITERATION}.el5 $FPMRPMARGS .)
   mv packages/${NAME}-${VERSION}-${ITERATION}.el5.noarch.rpm packages/${NAME}-${VERSION}-${ITERATION}.el5.i386.rpm 
   (cd beuser/rhel/6/i386 ; fpm -a noarch --iteration ${ITERATION}.el6 $FPMRPMARGS .)
-  mv packages/${NAME}-${VERSION}-${ITERATION}.el6.noarch.rpm packages/${NAME}-${VERSION}-${ITERATION}.el5.i686.rpm 
+  mv packages/${NAME}-${VERSION}-${ITERATION}.el6.noarch.rpm packages/${NAME}-${VERSION}-${ITERATION}.el6.i686.rpm 
   (cd beuser/rhel/5/x86_64 ; fpm --iteration ${ITERATION}.el5 $FPMRPMARGS .)
   (cd beuser/rhel/6/x86_64 ; fpm --iteration ${ITERATION}.el6 $FPMRPMARGS .)
 
