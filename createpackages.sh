@@ -21,8 +21,8 @@ umask 0022
 TYPE=$1
 
 NAME=beuser
-VERSION=0.2
-ITERATION=1
+VERSION=0.3
+ITERATION=2
 EPOCH=1
 MAINTAINER=kalle.kiviaho@ericsson.com
 
@@ -60,7 +60,7 @@ mkdir packages
 FPMCOMMONARGS="--name $NAME -s dir --version ${VERSION} --epoch=$EPOCH --maintainer $MAINTAINER"
 FPMRPMARGS="$FPMCOMMONARGS -t rpm --rpm-user root --rpm-group root --package ../../../../packages" 
 FPMDEBARGS="$FPMCOMMONARGS -t deb --deb-user root --deb-group root"
-FPMSOLARGS="$FPMCOMMONARGS -t solaris --prefix /bin -a all --solaris-user root --solaris-group root"
+FPMSOLARGS="$FPMCOMMONARGS -t solaris --prefix /usr/bin -a all --solaris-user root --solaris-group root"
 
 
 # Redhat
